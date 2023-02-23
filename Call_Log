@@ -1,0 +1,80 @@
+package p1;
+import java.util.*;
+
+public class contact {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		ArrayList<details> l=new ArrayList<>();
+		System.out.println("enter n value");
+		int n=sc.nextInt();
+		sc.nextLine();
+		System.out.println("enter elements");
+		String nam;
+		int n1;
+		for(int i=0;i<n;i++){
+		nam=sc.nextLine();
+		n1 =sc.nextInt();
+		sc.nextLine();
+		l.add(new details(nam,n1));
+		System.out.println(l.get(i).name+" "+l.get(i).number);
+		}
+		
+		
+		
+		ArrayList<Long> m=new ArrayList<>();
+		System.out.println("Enter no. of missed calls");
+		int n2=sc.nextInt();
+		for(int i=0;i<n2;i++){
+			m.add(sc.nextLong());
+		}
+		for(int i=0;i<n2;i++){
+			long n3=m.get(i);
+			int f=0;
+			for(details d:l){
+				if(n3==d.number){
+					System.out.println(d.name+" "+n3);
+					f=1;
+				}
+			}
+			if(f==0)
+				System.out.println(n3+" "+"Private Caller");
+		}
+		System.out.println("Enter the No. to be Searched");
+		long s=sc.nextLong();
+		int f1=0;
+		for(details d:l){
+			if(d.number==s){
+				f1=1;
+				System.out.println(d.name+" "+s);
+			}
+		}
+		if(f1==0)
+			System.out.println(s+" "+"Private Number");
+		System.out.println("enter the no. to be deleted");
+		long del=sc.nextInt();
+		ArrayList<details> l2=new ArrayList<>();
+		for(details d:l){
+			if(d.number==del){
+				continue;
+			}else{
+				l2.add(d);
+			}
+			
+		}
+		for(details d:l2)
+			System.out.println(d.name+" "+d.number);
+	}
+
+}
+
+class details{
+	String name;
+	long number;
+	details(String name,long number){
+		this.name=name;
+		this.number=number;
+	}
+	
+}
