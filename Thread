@@ -1,0 +1,165 @@
+package p2;
+
+//
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        xf9t5
+        
+        DigitThread digitThread = new DigitThread();
+        VowelThread vowelThread = new VowelThread();
+        
+        digitThread.start();
+        try{
+        	digitThread.join();
+        }catch (Exception e) {
+        	System.out.println(e);
+		}
+        vowelThread.start();
+    }
+}
+
+class DigitThread extends Thread {
+	Scanner scanner = new Scanner(System.in);
+    @Override
+    public void run() {
+        System.out.println("Enter a number not less than four digits:");
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        
+        
+        String[] words = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+        String numInWords = "";
+        while (num > 0) {
+            int digit = num % 10;
+            numInWords = words[digit] + " " + numInWords;
+            num /= 10;
+        }
+        System.out.println("Number in words: " + numInWords);
+    }
+}
+
+class VowelThread extends Thread {
+	Scanner scanner = new Scanner(System.in);
+    @Override
+    public void run() {
+    	
+        System.out.println("Enter a word:");
+        String word = scanner.next().toUpperCase();
+        
+       
+        int count = 0;
+        String vowels = "";
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+                count++;
+                vowels += ch + " ";
+            }
+        }
+        System.out.println("Vowels: " + vowels + " Count: " + count);
+    }
+}
+
+*************************
+//
+//import java.util.Scanner;
+//
+//public class Main extends Thread{
+//
+//  public static void main(String[] args) {
+//    Scanner sc = new Scanner(System.in);
+//
+//    // Creating the first thread
+//    Thread thread1 = new Thread(new Runnable() {
+//        @Override
+//        public void run() {
+//          // Ask the user to enter a number with at least four digits
+//          System.out.println("Enter a number with at least four digits: ");
+//          String number = sc.next();
+//
+//          // Split the digits of the number and display them in words
+//          System.out.print("The number " + number + " is equivalent to: ");
+//          for (int i = 0; i < number.length(); i++) {
+//            if (Character.isLetter(number.charAt(i))) {
+//              System.out.print(number.charAt(i));
+//            } else {
+//              switch (Character.getNumericValue(number.charAt(i))) {
+//                case 0:
+//                  System.out.print(" "+"zero" +" ");
+//                  break;
+//                case 1:
+//                  System.out.print("one"+" ");
+//                  break;
+//                case 2:
+//                  System.out.print("two"+" ");
+//                  break;
+//                case 3:
+//                  System.out.print("three"+" ");
+//                  break;
+//                case 4:
+//                  System.out.print("four"+" ");
+//                  break;
+//                case 5:
+//                  System.out.print("five"+" ");
+//                  break;
+//                case 6:
+//                  System.out.print("six"+" ");
+//                  break;
+//                case 7:
+//                  System.out.print("seven"+" ");
+//                  break;
+//                case 8:
+//                  System.out.print("eight"+" ");
+//                  break;
+//                case 9:
+//                  System.out.print("nine"+" ");
+//                  break;
+//                default:
+//                  System.out.print(number.charAt(i));
+//                  break;
+//              }
+//            }
+//          }
+//          System.out.println();
+//        }
+//      });
+//    // Create the second thread
+//    Thread thread2 = new Thread(new Runnable() {
+//      @Override
+//      public void run() {
+//        // Ask the user to enter a word
+//        System.out.println("Enter a word: ");
+//        String word = sc.next().toUpperCase();
+//
+//        // Count the number of vowels in the word and print it
+//        int count = 0;
+//        String vowels = "";
+//        for (int i = 0; i < word.length(); i++) {
+//            char ch = word.charAt(i);
+//            if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+//                count++;
+//                vowels += ch + " ";
+//            }
+//        }
+//        System.out.println("Vowels: " + vowels + " Count: " + count);
+//        
+//      }
+//    });
+//
+//    // Start both threads
+//   thread1.start();
+//   try{
+//	   thread1.join(); 
+//   }catch (Exception e) {
+//	// TODO: handle exception
+//	   System.out.println(e);
+//}
+//    thread2.start();
+//    //sc.close();
+//  }
+//}
+//
+//
+//
